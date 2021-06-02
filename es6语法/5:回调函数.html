@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调函数</title>
+</head>
+<body style="background-color: black;">
+  <script>
+      // 函数A作为参数(函数引用)传递到另一个函数B中，
+      // 并且这个函数B执行函数A。我们就说函数A叫做回调函数。
+      // 如果没有名称(函数表达式)，就叫做匿名回调函数。
+
+      function say(value) {
+        console.log(value)
+      }
+
+      function execute(somefunction,value) {
+        somefunction(value)
+      }
+
+      execute(say,'hi,say')
+  </script>
+</body>
+</html>

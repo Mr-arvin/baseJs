@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>内存地址</title>
+  </head>
+  <body style="background-color: black;">   
+    <script>
+      // 返利 n不一直保存在内存
+      // var nadd;
+      function f1() {
+        var n = 999;
+        nadd = function() {
+          n += 1;
+        }
+        function f2() {
+          console.log(n);
+        }
+
+        return f2;
+      }
+      
+      var result = f1()
+      result()
+      nadd()
+      result()
+      nadd()
+      result()
+
+      // 疑问：为什么result = f1()才可以让n保存在内存中
+    </script>   
+  </body>
+</html>

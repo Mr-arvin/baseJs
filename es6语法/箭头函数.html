@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数</title>
+</head>
+<body style="background-color: black;">
+   <script>
+    //  https://www.runoob.com/w3cnote/js-call-apply-bind.html
+     console.log(this)
+     var obj = {
+        data: {
+          index: 5,
+        },
+        onLoad(e){
+          console.log(this)
+          var that = this
+          var fn = function(){
+            console.log(this)
+            console.log(!!this.data?this.data.index:'undefind')  //输出undefined
+            console.log(that.data.index)  //输出5
+          }
+          var fn_equal = () =>{
+            console.log('箭头函数：')
+            console.log(this)
+            console.log(this.data.index)  //输出5
+            setTimeout(()=>{
+              console.log(this)
+              setTimeout(()=>{
+                console.log(this)
+              })
+            })
+            setTimeout(function(){
+              console.log(this)
+              setTimeout(()=>{
+                console.log(this)
+              })
+            })
+          }
+          setTimeout(()=>{
+            console.log(this)
+          })
+          setTimeout(function(){
+            console.log(this)
+          })
+          fn()
+          fn_equal()
+
+          let setOut = function(callback,time) {
+            var arr = [];
+            callback(arr)
+          }
+          
+          setOut(function(){
+            console.log('setOut')
+            console.log(this)
+          },3)
+
+          setOut(()=>{
+            console.log('setOutes6')
+            console.log(this)
+          },3)
+        }
+      }
+      obj.onLoad()
+
+
+      
+   </script>
+</body>
+</html>

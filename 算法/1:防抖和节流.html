@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1:防抖和节流</title>
+</head>
+<body style="background-color: black;">
+  <h3>题 1 ：什么是防抖和节流？有什么区别？如何实现？</h3>    
+  <h4>防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间思路：每次触发事件时都取消之前的延时调用方法</h4>
+  <section class="main-container">
+    <input type="text" id="inp">
+  </section>
+</body>
+<script>
+  function debounce(fn){
+    let timeout = null;
+    return function () {
+      clearTimeout(timeout);
+      timeout = setTimeout(()=>{
+        console.log(this)
+        console.log(arguments)
+        fn.apply(this,arguments); //不懂 直接fn()不就行了吗
+      },500)
+    }
+  }
+  function sayHi() {
+    console.log('防抖成功');
+  }
+  var inp = document.getElementById('inp');
+  inp.addEventListener('input',debounce(sayHi));
+</script>
+
+<script>
+  function debounce(fn,wait){
+      var timer = null;
+      return function(){
+          if(timer !== null){
+              clearTimeout(timer);
+          }
+          timer = setTimeout(fn,wait);
+          console.log(timer)
+      }
+  }
+      
+  function handle(){
+      console.log(Math.random());
+  }
+      
+  window.addEventListener("resize",debounce(handle,1000));
+
+
+
+  // function debounce2(){
+  //     var timer = null;
+  //     if(timer !== null){
+  //         clearTimeout(timer);
+  //     }
+  //     timer = setTimeout(function(){
+  //       console.log('sdf')
+  //     },1000);
+  //     console.log(timer)
+  // }    
+      
+  // window.addEventListener("resize",debounce2);
+</script>
+</html>
